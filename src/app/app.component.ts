@@ -42,7 +42,7 @@ export class AppComponent {
     this.photoService.listPhotos().subscribe((photos)=>{
       this.photoList = photos;
       this.numPhotos = this.photoList.length;
-    }));
+    });
     this.photoUrl = this.photoService.photoUrl;
   }
 }
