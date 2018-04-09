@@ -36,9 +36,13 @@ export class AppComponent {
   }
 
   photoList = null;
+  photoUrl = '';
   // runs when the component is fully set up, gets photo data from service
   ngOnInit() {
-    this.photoList = this.photoService.listPhotos();
-    this.numPhotos = this.photoList.length;
+    this.photoService.listPhotos().subscribe((photos)=>{
+      this.photoList = photos;
+      this.numPhotos = this.photoList.length;
+    }));
+    this.photoUrl = this.photoService.photoUrl;
   }
 }

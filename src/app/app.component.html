@@ -4,5 +4,6 @@ There are {{ getNumberOfPhotos() }} photos.
 <app-photo
   *ngFor='let photoObject of photoList'
   [photo]="photoObject"
+  [baseUrl]="photoUrl"
   (upvotedEvent)="handleUpvoted($event)">
 </app-photo>

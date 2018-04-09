@@ -9,7 +9,9 @@ export class PhotoComponent implements OnInit {
 
   // photo passed in from app-photo tag of app.component
   @Input() photo;
-  // upvotedEvent bound in app-photo tag, will trigger a function in app,component
+  // photo base url
+  @Input() baseUrl;
+    // upvotedEvent bound in app-photo tag, will trigger a function in app,component
   @Output() upvotedEvent = new EventEmitter<string>();
   // counter of upvotes on this photo
   votes:number = 0;
@@ -25,6 +27,7 @@ export class PhotoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.photo.displayurl = this.baseUrl + this.photo.imageurl;
   }
 
 }
