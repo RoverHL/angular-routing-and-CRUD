@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiurl:'http://104.236.220.103:3030/',
-  photoUrl:'http://104.236.220.103:3030'
+  apiurl:'https://apps.learningapi.com/',
+  photoUrl:'https://apps.learningapi.com'
 };
