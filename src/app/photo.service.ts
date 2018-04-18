@@ -21,10 +21,12 @@ export class PhotoService {
   }
 
   // Other CRUD methods TBD`
-  createPhoto(photoObject){
+  createPhoto(photo: FormData){
+    return this.http.post(this.apiurl+'api/photos', photo);
   }
 
   updatePhoto(id, data){
+      return this.http.put(this.apiurl + 'api/photos/' + id, data);
   }
 
   deletePhoto(id){
