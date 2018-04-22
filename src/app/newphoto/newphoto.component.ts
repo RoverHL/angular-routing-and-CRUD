@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { PhotoService } from '../photo.service';
 
 @Component({
@@ -11,20 +11,23 @@ export class NewphotoComponent implements OnInit {
   //  to refresh its photoList
   @Output() newPhoto = new EventEmitter();
 
-  // bound to the form fields
+  // photo object, bound to the form fields
   photo:any = {}
   // property for the file upload element (not bound, but set in a change event)
   fileToUpload: File = null;
 
   constructor(private photoService:PhotoService) { }
 
+  // will be used to clear this field later
+  fileInputField = null;
+
   // bound to change event on file upload html control
-  handleFileInput(files):void{
-    this.fileToUpload = files.item(0);
+  handleFileInput(target):void{
+    this.fileToUpload = target.files.item(0);
+    this.fileInputField = target;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit(){ }
 
   // called onSubmit
   save(newphotoForm) : void {
@@ -42,7 +45,7 @@ export class NewphotoComponent implements OnInit {
         console.log(photo)
         this.newPhoto.emit();
         newphotoForm.reset();
+        this.fileInputField.value="";
       });
   }
-
 }

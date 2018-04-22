@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PhotoService } from '../photo.service';
 
 @Component({
@@ -18,7 +18,8 @@ export class PhotodetailComponent implements OnInit {
   editing:boolean=false;
 
   constructor(private route: ActivatedRoute,
-              private photoService:PhotoService ) { }
+              private photoService:PhotoService,
+              private router: Router ) { }
 
   ngOnInit() {
     this.getPhoto();
@@ -56,8 +57,9 @@ export class PhotodetailComponent implements OnInit {
       this.photoService.deletePhoto(this.photo._id)
         .subscribe((result)=>{
           alert(`Photo ${this.photo.title} has been deleted`);
-          location.href="/#/";
+          this.router.navigate(['/gallery']);
         })
       }
   }
+
 }

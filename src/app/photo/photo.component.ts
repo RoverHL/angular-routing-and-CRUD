@@ -15,6 +15,8 @@ export class PhotoComponent implements OnInit {
   @Output() upvotedEvent = new EventEmitter<string>();
   // counter of upvotes on this photo
   votes:number = 0;
+  // flag for whether user has voted on this photo in this session
+  voted:boolean=false;
 
   constructor() {
   }
@@ -23,6 +25,8 @@ export class PhotoComponent implements OnInit {
   upvote(title):void{
     console.log(title);
     this.votes+=1;
+    // don't let them vote this one up again
+    this.voted=true;
     this.upvotedEvent.emit(title);
   }
 
