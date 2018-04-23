@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { PhotoService } from '../photo.service';
 
 @Component({
@@ -10,27 +10,21 @@ import { PhotoService } from '../photo.service';
 })
 export class PhotodetailComponent implements OnInit {
 
-  // local photo object fetched from PhotoService
-  photo:any;
-  // photo image uri with server path prepended
+  photo:any;  //could be a photo obejct
   photodisplayurl:string='';
-  // flag for edit mode
   editing:boolean=false;
 
   constructor(private route: ActivatedRoute,
-              private photoService:PhotoService,
-              private router: Router ) { }
+              private photoService:PhotoService ) { }
 
   ngOnInit() {
     this.getPhoto();
   }
 
-  // bound to edit and cancel buttons in view
   setEditMode(mode):void{
     this.editing = (mode ? true : false);
   }
 
-  // retreives route parameter and fetches data from data service
   getPhoto(): void{
      const param = this.route.snapshot.paramMap.get('id');
      this.photoService.getPhoto(param)
@@ -40,7 +34,6 @@ export class PhotodetailComponent implements OnInit {
       });
   }
 
-  // calls update from PhotoService using data passed from ngForm.value
   updatePhoto(obj:any):void {
     this.photo.title = obj.titleField;
     this.photo.description = obj.descField;
@@ -61,5 +54,4 @@ export class PhotodetailComponent implements OnInit {
         })
       }
   }
-
 }
